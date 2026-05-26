@@ -151,3 +151,76 @@ body::before {
   animation: hz-scan 0.12s linear infinite;
   z-index: 9999;
 }
+/* === ВКЛАДКИ НАЛОЖЕНЫ ДРУГ НА ДРУГА === */
+
+.screen {
+  position: relative;
+  width: 80%;
+  margin: 60px auto;
+  padding: 25px;
+  background: #000040;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+}
+
+/* Нижние слои */
+.screen::before,
+.screen::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  background: #000060;
+  z-index: -1;
+}
+
+/* Первый слой */
+.screen::before {
+  top: -12px;
+  transform: scale(0.98);
+  opacity: 0.7;
+}
+
+/* Второй слой */
+.screen::after {
+  top: -24px;
+  transform: scale(0.96);
+  opacity: 0.5;
+}
+
+/* Карточки внутри */
+section {
+  background: #000020;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+/* Заголовки */
+section h2 {
+  margin-top: 0;
+  color: #00ffff;
+}
+
+/* Меню как вкладки */
+.menu a {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  background: #000030;
+  margin: 0 6px;
+  transition: 0.2s;
+}
+
+.menu a:hover {
+  background: #001060;
+  color: #00ffff;
+  transform: translateY(-2px);
+}
