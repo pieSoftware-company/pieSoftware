@@ -1,4 +1,6 @@
-/* Общий стиль */
+/* =====================
+   ОБЩИЙ СТИЛЬ
+===================== */
 body {
   background-color: #000080;
   color: #ffff00;
@@ -7,33 +9,216 @@ body {
   padding: 0;
 }
 
-/* Центральный экран */
+/* =====================
+   ЦЕНТРАЛЬНЫЙ ЭКРАН
+===================== */
 .screen {
+  position: relative;
   width: 80%;
-  margin: auto;
-  padding: 20px;
-  border: 3px solid #ffffff;
+  margin: 60px auto;
+  padding: 25px;
+  background: #000040;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.6);
+  animation: crt-warmup 2.2s ease-out forwards;
 }
 
-/* Шапка и подвал */
-.header, .footer {
+/* Нижние слои (эффект стопки вкладок) */
+.screen::before,
+.screen::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 100%;
+  border: 2px solid #ffffff;
+  border-radius: 10px;
+  background: #000060;
+  z-index: -1;
+}
+
+.screen::before {
+  top: -12px;
+  transform: scale(0.98);
+  opacity: 0.7;
+}
+
+.screen::after {
+  top: -24px;
+  transform: scale(0.96);
+  opacity: 0.5;
+}
+
+/* =====================
+   ШАПКА И ПОДВАЛ
+===================== */
+.header {
   text-align: center;
   border-bottom: 2px solid #ffffff;
   padding: 10px;
 }
 
 .footer {
+  text-align: center;
   border-top: 2px solid #ffffff;
-  border-bottom: none;
+  padding: 10px;
   margin-top: 20px;
 }
 
-/* Меню */
+/* =====================
+   МЕНЮ
+===================== */
 .menu {
   margin: 20px 0;
   text-align: center;
 }
 
+.menu a {
+  display: inline-block;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 6px 14px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  background: #000030;
+  margin: 0 6px;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.menu a:hover {
+  background: #001060;
+  color: #00ffff;
+  transform: translateY(-2px);
+}
+
+/* =====================
+   КОНТЕНТ
+===================== */
+.content {
+  padding: 20px;
+}
+
+/* =====================
+   РАЗДЕЛЫ
+===================== */
+section {
+  background: #000020;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 25px 0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+section h2 {
+  margin-top: 0;
+  color: #00ffff;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* =====================
+   СПИСКИ
+===================== */
+ul {
+  list-style-type: none;
+  padding: 0;
+  text-align: center;
+}
+
+ul li {
+  margin: 8px 0;
+  color: #ffff00;
+}
+
+/* =====================
+   КОМАНДА
+===================== */
+.member {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+.member-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin: 15px 0;
+}
+
+.member-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 2px solid #ffffff;
+  border-radius: 4px;
+}
+
+/* =====================
+   ПРИЛОЖЕНИЯ
+===================== */
+.placeholder {
+  color: #888888;
+  font-style: italic;
+}
+
+/* =====================
+   АКЦЕНТ (запас на будущее)
+===================== */
+.highlight {
+  color: #00ff00;
+  font-weight: bold;
+}
+
+/* =====================
+   CRT: ПРОГРЕВ ЭКРАНА
+===================== */
+@keyframes crt-warmup {
+  0% {
+    opacity: 0;
+    filter: brightness(0) blur(20px);
+  }
+  40% {
+    opacity: 0.3;
+    filter: brightness(2) blur(10px);
+  }
+  70% {
+    opacity: 1;
+    filter: brightness(1.5) blur(3px);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1) blur(0);
+  }
+}
+
+/* =====================
+   CRT: БЕГУЩИЕ ПОЛОСЫ
+===================== */
+@keyframes hz-scan {
+  0%   { transform: translateY(-100%); opacity: 0.15; }
+  100% { transform: translateY(100%);  opacity: 0.05; }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  animation: hz-scan 0.12s linear infinite;
+  z-index: 9999;
+}
 .menu a {
   color: #ffffff;
   text-decoration: none;
